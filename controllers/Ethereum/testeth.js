@@ -307,8 +307,9 @@ router.post("/transfer", async function (request, response) {
 
 function getTransaction(hash) {
 	var data;
-	return new Promise(function(resolve, reject) {
-		web3.eth.getTransaction(hash, function (err, transaction) {
+	return new Promise( async function(resolve, reject) {
+		await web3.eth.getTransaction(hash, function (err, transaction) {
+			console.log("this is trans" , transaction);
 			var date = new Date();
 			var timestamp = date.getTime();
 			var conf = web3.eth.getBlock("latest").number - transaction.blockNumber;
